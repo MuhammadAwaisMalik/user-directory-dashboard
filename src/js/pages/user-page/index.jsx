@@ -39,8 +39,10 @@ const UsersPage = ({ data }) => {
   }, [currentPage, usersData]);
 
   useEffect(() => {
-    setTotalPages(Math.ceil(usersData?.length / USERS_PER_PAGE));
-  }, []);
+    if (usersData) {
+      setTotalPages(Math.ceil(usersData?.length / USERS_PER_PAGE));
+    }
+  }, [usersData]);
 
   const handleDelete = (user) => {
     setSelectedUser(user);
