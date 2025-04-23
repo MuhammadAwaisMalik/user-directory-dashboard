@@ -5,7 +5,9 @@ import Image from "next/image";
 const UserCard = ({ users, className, onEdit, onDelete }) => {
   if (!users?.length) {
     return (
-      <div className="text-center py-16 col-span-full text-gray-500 text-sm">
+      <div
+        className={`text-center py-16 col-span-full text-gray-500 text-sm ${className}`}
+      >
         No users found.
       </div>
     );
