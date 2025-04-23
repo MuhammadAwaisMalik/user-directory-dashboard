@@ -31,48 +31,60 @@ const UserTable = ({ users, className, onEdit, onDelete }) => {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 bg-white">
-          {users?.map((user, index) => (
-            <tr
-              key={index}
-              className="hover:bg-gray-50 transition duration-150"
-            >
-              <td className="px-6 py-4">
-                <Image
-                  src={user?.picture?.thumbnail}
-                  alt={user?.name?.first}
-                  width={40}
-                  height={40}
-                  className="rounded-full border"
-                />
-              </td>
-              <td className="px-6 py-4 font-medium whitespace-nowrap">
-                {`${user?.name?.first} ${user?.name?.last || ""}`}
-              </td>
-              <td className="px-6 py-4 text-gray-600">{user?.email}</td>
-              <td className="px-6 py-4 capitalize">{user?.gender}</td>
-              <td className="px-6 py-4 text-sm text-gray-500">
-                {`${user?.location?.city || ""}, ${
-                  user?.location?.state || ""
-                }, ${user?.location?.country || ""}`}
-              </td>
-              <td className="px-6 py-4">
-                <div className="flex items-center space-x-3">
-                  <button
-                    onClick={() => onEdit(user)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => onDelete(user)}
-                    className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer"
-                  >
-                    Delete
-                  </button>
+          {users?.length ? (
+            <>
+              {users?.map((user, index) => (
+                <tr
+                  key={index}
+                  className="hover:bg-gray-50 transition duration-150"
+                >
+                  <td className="px-6 py-4">
+                    <Image
+                      src={user?.picture?.thumbnail}
+                      alt={user?.name?.first}
+                      width={40}
+                      height={40}
+                      className="rounded-full border"
+                    />
+                  </td>
+                  <td className="px-6 py-4 font-medium whitespace-nowrap">
+                    {`${user?.name?.first} ${user?.name?.last || ""}`}
+                  </td>
+                  <td className="px-6 py-4 text-gray-600">{user?.email}</td>
+                  <td className="px-6 py-4 capitalize">{user?.gender}</td>
+                  <td className="px-6 py-4 text-sm text-gray-500">
+                    {`${user?.location?.city || ""}, ${
+                      user?.location?.state || ""
+                    }, ${user?.location?.country || ""}`}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center space-x-3">
+                      <button
+                        onClick={() => onEdit(user)}
+                        className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => onDelete(user)}
+                        className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </>
+          ) : (
+            <tr>
+              <td colSpan="6">
+                <div className="text-center py-10 text-gray-500 text-sm">
+                  No users found.
                 </div>
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

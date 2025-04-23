@@ -3,6 +3,14 @@ import React from "react";
 import Image from "next/image";
 
 const UserCard = ({ users, className, onEdit, onDelete }) => {
+  if (!users?.length) {
+    return (
+      <div className="text-center py-16 col-span-full text-gray-500 text-sm">
+        No users found.
+      </div>
+    );
+  }
+
   return (
     <div
       className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ${className} `}
