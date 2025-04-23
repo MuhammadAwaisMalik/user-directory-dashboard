@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
+// @ import components
 import UsersPage from "../user-page";
 import SearchBar from "@/js/components/searchBar";
 import FilterDropdown from "@/js/components/filterDropdown";
 
 const HomePage = ({ data }) => {
-  const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredUsers = data?.filter((user) => {
     const matchesSearch =

@@ -12,13 +12,17 @@ const USERS_PER_PAGE = 5;
 const UsersPage = ({ data }) => {
   const [users, setUsers] = useState([]);
   const [editData, setEditData] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
   const [usersData, setUsersData] = useState(data);
   const [currentPage, setCurrentPage] = useState(1);
   const [isAddModal, setIsAddModal] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isShowConfirm, setIsShowConfirm] = useState(false);
-  const totalPages = Math.ceil(usersData?.length / USERS_PER_PAGE);
+
+  useEffect(() => {
+    setUsersData(data);
+  }, [data]);
 
   useEffect(() => {
     const currentUsers = usersData?.slice(
@@ -33,6 +37,10 @@ const UsersPage = ({ data }) => {
       setUsers(currentUsers);
     }
   }, [currentPage, usersData]);
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(usersData?.length / USERS_PER_PAGE));
+  }, []);
 
   const handleDelete = (user) => {
     setSelectedUser(user);
